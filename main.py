@@ -7,13 +7,13 @@ class Field:
     def __str__(self):
         return str(self.value)
 
-class Name:
+class Name(Field):
     def __init__(self, value):
         if value is None or str(value).strip() == "":
             raise ValueError("Name is required")
         super().__init__(str(value))
 
-class Phone:
+class Phone(Field):
     def __init__(self, value):
         value = str(value)
         if not (value.isdigit() and len(value) == 10):
@@ -53,9 +53,15 @@ class Record:
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
 
-class AddressBook:
-    # реалізація класу
-    ...
+class AddressBook(UserDict):
+    def add_record(self, record):
+        self.data[record.name.value] = record
+
+    def find(self, name):
+        return self.data.get(name)
+
+    def delete(self, name):
+        self.data.pop(name, None)
 
 if __name__ == "__main__":
         # Створення нової адресної книги
