@@ -8,10 +8,8 @@ class Field:
         return str(self.value)
 
 class Name:
-    def __init__(self, value):
-        if value is None or str(value).strip() == "":
-            raise ValueError("Name is required")
-        super().__init__(str(value))
+    # реалізація класу
+    ...
 
 class Phone:
     def __init__(self, value):
