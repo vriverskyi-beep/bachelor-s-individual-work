@@ -14,8 +14,11 @@ class Name:
         super().__init__(str(value))
 
 class Phone:
-    # реалізація класу
-    ...
+    def __init__(self, value):
+        value = str(value)
+        if not (value.isdigit() and len(value) == 10):
+            raise ValueError("Phone must be 10 digits")
+        super().__init__(value)
 
 class Record:
     def __init__(self, name):
