@@ -25,7 +25,30 @@ class Record:
         self.name = Name(name)
         self.phones = []
 
-    # реалізація класу
+    def add_phone(self, phone):
+        self.phones.append(Phone(phone))
+
+    def remove_phone(self, phone):
+        phone = str(phone)
+        for i, p in enumerate(self.phones):
+            if p.value == phone:
+                self.phones.pop(i)
+                return
+
+    def edit_phone(self, old_phone, new_phone):
+        old_phone = str(old_phone)
+        for i, p in enumerate(self.phones):
+            if p.value == old_phone:
+                self.phones[i] = Phone(new_phone)
+                return
+        raise ValueError("Old phone not found")
+
+    def find_phone(self, phone):
+        phone = str(phone)
+        for p in self.phones:
+            if p.value == phone:
+                return p
+        return None
 
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
